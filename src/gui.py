@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-# Import your managers
-from src.card_manager import add_card, get_cards
+from src.card_manager import add_card, get_cards, update_card, delete_card
 from src.study_mode import StudySession
 
 
@@ -10,7 +9,7 @@ class FlashcardApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Flashcard Study App")
-        self.geometry("500x400")
+        self.geometry("500x450")
 
         self.container = tk.Frame(self)
         self.container.pack(fill="both", expand=True)
@@ -31,7 +30,8 @@ class FlashcardApp(tk.Tk):
 class HomeScreen(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
-        tk.Label(self, text="Flashcard Study App", font=("Arial", 20)).pack(pady=20)
+
+        tk.Label(self, text="Flashcard Study App", font=("Arial", 22)).pack(pady=20)
 
         ttk.Button(self, text="Create Card",
                     command=lambda: controller.show_frame(CreateCardScreen)).pack(pady=10)
@@ -39,7 +39,6 @@ class HomeScreen(tk.Frame):
         ttk.Button(self, text="View Cards",
                     command=lambda: controller.show_frame(ViewCardsScreen)).pack(pady=10)
 
-        #  Added Study Mode button
         ttk.Button(self, text="Study Mode",
                     command=lambda: controller.show_frame(StudyModeScreen)).pack(pady=10)
 
@@ -73,22 +72,73 @@ class CreateCardScreen(tk.Frame):
 class ViewCardsScreen(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
+        self.controller = controller
 
-        tk.Label(self, text="All Cards").pack(pady=10)
+        tk.Label(self, text="All Cards", font=("Arial", 18)).pack(pady=10)
 
         self.listbox = tk.Listbox(self, width=50)
         self.listbox.pack()
 
-        ttk.Button(self, text="Refresh", command=self.load_cards).pack(pady=10)
-        ttk.Button(self, text="Back", command=lambda: controller.show_frame(HomeScreen)).pack()
+        ttk.Button(self, text="Refresh", command=self.load_cards).pack(pady=5)
+        ttk.Button(self, text="Edit Selected", command=self.edit_selected).pack(pady=5)
+        ttk.Button(self, text="Delete Selected", command=self.delete_selected).pack(pady=5)
+
+        ttk.Button(self, text="Back", command=lambda: controller.show_frame(HomeScreen)).pack(pady=10)
 
     def load_cards(self):
         self.listbox.delete(0, tk.END)
-        for card in get_cards():
+        self.cards = get_cards()
+        for card in self.cards:
             self.listbox.insert(tk.END, f"{card['front']}  ->  {card['back']}")
 
+    def get_selected_index(self):
+        selection = self.listbox.curselection()
+        if not selection:
+            return None
+        return selection[0]
 
-#  FULL Study Mode Screen (already integrated)
+    def edit_selected(self):
+        index = self.get_selected_index()
+        if index is None:
+            return
+
+        card = self.cards[index]
+
+        popup = tk.Toplevel(self)
+        popup.title("Edit Card")
+        popup.geometry("300x250")
+
+        tk.Label(popup, text="Front:").pack()
+        front_entry = tk.Entry(popup)
+        front_entry.insert(0, card["front"])
+        front_entry.pack()
+
+        tk.Label(popup, text="Back:").pack()
+        back_entry = tk.Entry(popup)
+        back_entry.insert(0, card["back"])
+        back_entry.pack()
+
+        tk.Label(popup, text="Deck:").pack()
+        deck_entry = tk.Entry(popup)
+        deck_entry.insert(0, card["deck"])
+        deck_entry.pack()
+
+        def save_changes():
+            update_card(index, front_entry.get(), back_entry.get(), deck_entry.get())
+            popup.destroy()
+            self.load_cards()
+
+        ttk.Button(popup, text="Save", command=save_changes).pack(pady=10)
+
+    def delete_selected(self):
+        index = self.get_selected_index()
+        if index is None:
+            return
+
+        delete_card(index)
+        self.load_cards()
+
+
 class StudyModeScreen(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
