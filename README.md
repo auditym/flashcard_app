@@ -16,3 +16,12 @@
 - Implemented add_deck and delete_deck functions
 - Updated GUI navigation to include Deck Manager
 - Tested deck creation and deletion
+
+### 2026-04-24 — 4 hours
+- Integrated Deck Manager screen (add/delete decks)
+- Added get_decks, add_deck, delete_deck functions in card_manager.py
+- Updated GUI navigation to include Deck Manager
+- Implemented Dark Mode toggle with global theme application
+- Added apply_theme() to FlashcardApp for consistent styling
+- Updated all screens to support theme switching
+- Verified deck creation, deletion, and dark mode behavior across all screens

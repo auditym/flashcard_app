@@ -10,7 +10,6 @@ from src.card_manager import (
     add_deck,
     delete_deck,
 )
-
 from src.study_mode import StudySession
 
 
@@ -18,22 +17,48 @@ class FlashcardApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Flashcard Study App")
-        self.geometry("500x450")
+        self.geometry("500x500")
+
+        # Dark mode state
+        self.dark_mode = False
 
         self.container = tk.Frame(self)
         self.container.pack(fill="both", expand=True)
 
         self.frames = {}
-        for F in (HomeScreen, CreateCardScreen, ViewCardsScreen, StudyModeScreen):
+        for F in (
+            HomeScreen,
+            CreateCardScreen,
+            ViewCardsScreen,
+            StudyModeScreen,
+            DeckManagerScreen,
+        ):
             frame = F(self.container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame(HomeScreen)
+        self.apply_theme()
 
     def show_frame(self, page):
         frame = self.frames[page]
         frame.tkraise()
+        self.apply_theme()
+
+    def apply_theme(self):
+        bg = "#1e1e1e" if self.dark_mode else "#ffffff"
+        fg = "#ffffff" if self.dark_mode else "#000000"
+
+        self.configure(bg=bg)
+        self.container.configure(bg=bg)
+
+        for frame in self.frames.values():
+            frame.configure(bg=bg)
+            for widget in frame.winfo_children():
+                try:
+                    widget.configure(bg=bg, fg=fg)
+                except:
+                    pass
 
 
 class HomeScreen(tk.Frame):
@@ -42,14 +67,39 @@ class HomeScreen(tk.Frame):
 
         tk.Label(self, text="Flashcard Study App", font=("Arial", 22)).pack(pady=20)
 
-        ttk.Button(self, text="Create Card",
-                    command=lambda: controller.show_frame(CreateCardScreen)).pack(pady=10)
+        ttk.Button(
+            self,
+            text="Create Card",
+            command=lambda: controller.show_frame(CreateCardScreen),
+        ).pack(pady=10)
 
-        ttk.Button(self, text="View Cards",
-                    command=lambda: controller.show_frame(ViewCardsScreen)).pack(pady=10)
+        ttk.Button(
+            self,
+            text="View Cards",
+            command=lambda: controller.show_frame(ViewCardsScreen),
+        ).pack(pady=10)
 
-        ttk.Button(self, text="Study Mode",
-                    command=lambda: controller.show_frame(StudyModeScreen)).pack(pady=10)
+        ttk.Button(
+            self,
+            text="Study Mode",
+            command=lambda: controller.show_frame(StudyModeScreen),
+        ).pack(pady=10)
+
+        ttk.Button(
+            self,
+            text="Manage Decks",
+            command=lambda: controller.show_frame(DeckManagerScreen),
+        ).pack(pady=10)
+
+        ttk.Button(
+            self,
+            text="Toggle Dark Mode",
+            command=self.toggle_dark_mode,
+        ).pack(pady=10)
+
+    def toggle_dark_mode(self):
+        self.controller.dark_mode = not self.controller.dark_mode
+        self.controller.apply_theme()
 
 
 class CreateCardScreen(tk.Frame):
@@ -69,7 +119,9 @@ class CreateCardScreen(tk.Frame):
         self.deck_entry.pack()
 
         ttk.Button(self, text="Save Card", command=self.save_card).pack(pady=10)
-        ttk.Button(self, text="Back", command=lambda: controller.show_frame(HomeScreen)).pack()
+        ttk.Button(
+            self, text="Back", command=lambda: controller.show_frame(HomeScreen)
+        ).pack()
 
     def save_card(self):
         add_card(self.front_entry.get(), self.back_entry.get(), self.deck_entry.get())
@@ -90,9 +142,13 @@ class ViewCardsScreen(tk.Frame):
 
         ttk.Button(self, text="Refresh", command=self.load_cards).pack(pady=5)
         ttk.Button(self, text="Edit Selected", command=self.edit_selected).pack(pady=5)
-        ttk.Button(self, text="Delete Selected", command=self.delete_selected).pack(pady=5)
+        ttk.Button(self, text="Delete Selected", command=self.delete_selected).pack(
+            pady=5
+        )
 
-        ttk.Button(self, text="Back", command=lambda: controller.show_frame(HomeScreen)).pack(pady=10)
+        ttk.Button(
+            self, text="Back", command=lambda: controller.show_frame(HomeScreen)
+        ).pack(pady=10)
 
     def load_cards(self):
         self.listbox.delete(0, tk.END)
@@ -169,7 +225,9 @@ class StudyModeScreen(tk.Frame):
         ttk.Button(self, text="Previous", command=self.prev_card).pack(pady=5)
         ttk.Button(self, text="Shuffle", command=self.shuffle_cards).pack(pady=5)
 
-        ttk.Button(self, text="Back", command=lambda: controller.show_frame(HomeScreen)).pack(pady=10)
+        ttk.Button(
+            self, text="Back", command=lambda: controller.show_frame(HomeScreen)
+        ).pack(pady=10)
 
         self.session = None
 
@@ -206,6 +264,8 @@ class StudyModeScreen(tk.Frame):
         if self.session:
             self.session.shuffle()
             self.update_card_display()
+
+
 class DeckManagerScreen(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
@@ -218,9 +278,13 @@ class DeckManagerScreen(tk.Frame):
 
         ttk.Button(self, text="Refresh", command=self.load_decks).pack(pady=5)
         ttk.Button(self, text="Add Deck", command=self.add_deck_popup).pack(pady=5)
-        ttk.Button(self, text="Delete Selected", command=self.delete_selected).pack(pady=5)
+        ttk.Button(self, text="Delete Selected", command=self.delete_selected).pack(
+            pady=5
+        )
 
-        ttk.Button(self, text="Back", command=lambda: controller.show_frame(HomeScreen)).pack(pady=10)
+        ttk.Button(
+            self, text="Back", command=lambda: controller.show_frame(HomeScreen)
+        ).pack(pady=10)
 
     def load_decks(self):
         self.listbox.delete(0, tk.END)
