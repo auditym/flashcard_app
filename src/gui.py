@@ -1,7 +1,16 @@
 import tkinter as tk
 from tkinter import ttk
 
-from src.card_manager import add_card, get_cards, update_card, delete_card
+from src.card_manager import (
+    add_card,
+    get_cards,
+    update_card,
+    delete_card,
+    get_decks,
+    add_deck,
+    delete_deck,
+)
+
 from src.study_mode import StudySession
 
 
@@ -197,3 +206,52 @@ class StudyModeScreen(tk.Frame):
         if self.session:
             self.session.shuffle()
             self.update_card_display()
+class DeckManagerScreen(tk.Frame):
+    def __init__(self, parent, controller):
+        super().__init__(parent)
+        self.controller = controller
+
+        tk.Label(self, text="Deck Manager", font=("Arial", 18)).pack(pady=10)
+
+        self.listbox = tk.Listbox(self, width=40)
+        self.listbox.pack()
+
+        ttk.Button(self, text="Refresh", command=self.load_decks).pack(pady=5)
+        ttk.Button(self, text="Add Deck", command=self.add_deck_popup).pack(pady=5)
+        ttk.Button(self, text="Delete Selected", command=self.delete_selected).pack(pady=5)
+
+        ttk.Button(self, text="Back", command=lambda: controller.show_frame(HomeScreen)).pack(pady=10)
+
+    def load_decks(self):
+        self.listbox.delete(0, tk.END)
+        decks = get_decks()
+        for d in decks:
+            self.listbox.insert(tk.END, d)
+
+    def get_selected_deck(self):
+        selection = self.listbox.curselection()
+        if not selection:
+            return None
+        return self.listbox.get(selection[0])
+
+    def add_deck_popup(self):
+        popup = tk.Toplevel(self)
+        popup.title("Add Deck")
+        popup.geometry("250x150")
+
+        tk.Label(popup, text="Deck Name:").pack()
+        entry = tk.Entry(popup)
+        entry.pack()
+
+        def save():
+            add_deck(entry.get().strip())
+            popup.destroy()
+            self.load_decks()
+
+        ttk.Button(popup, text="Save", command=save).pack(pady=10)
+
+    def delete_selected(self):
+        deck = self.get_selected_deck()
+        if deck:
+            delete_deck(deck)
+            self.load_decks()

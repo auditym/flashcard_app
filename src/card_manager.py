@@ -53,3 +53,27 @@ def delete_card(index):
     data = load_data()
     data["cards"].pop(index)
     save_data(data)
+
+def get_decks():
+    data = load_data()
+    return data["decks"]
+
+
+def add_deck(deck_name):
+    data = load_data()
+    if deck_name not in data["decks"]:
+        data["decks"].append(deck_name)
+        save_data(data)
+
+
+def delete_deck(deck_name):
+    data = load_data()
+
+    # Remove deck
+    if deck_name in data["decks"]:
+        data["decks"].remove(deck_name)
+
+    # Remove cards belonging to that deck
+    data["cards"] = [c for c in data["cards"] if c["deck"] != deck_name]
+
+    save_data(data)
