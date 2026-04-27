@@ -19,6 +19,10 @@ def save_data(data):
 
 #Adds a new flashcard to the system
 def add_card(front, back, deck):
+    # Prevent empty cards
+    if not front.strip() or not back.strip():
+        return False
+        
     data = load_data()
     data["cards"].append({
         "front": front,
