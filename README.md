@@ -31,7 +31,7 @@ This Flashcard App allows users to create, edit, delete, and study flashcards ac
 - Updated GUI navigation to include Deck Manager
 - Tested deck creation and deletion
 
-### 2026-04-24 — 4 hours
+ 2026-04-24 — 4 hours
 - Integrated Deck Manager screen (add/delete decks)
 - Added get_decks, add_deck, delete_deck functions in card_manager.py
 - Updated GUI navigation to include Deck Manager
@@ -40,7 +40,7 @@ This Flashcard App allows users to create, edit, delete, and study flashcards ac
 - Updated all screens to support theme switching
 - Verified deck creation, deletion, and dark mode behavior across all screens
 - 
-#### 2026-04-25 — 10
+2026-04-25 — 10
 - Added descriptive comments across multiple functions for clarity
 - Cleaned up formatting in gui.py by adding spacing for readability
 - Added .gitignore file to prevent Python cache files from being tracked
