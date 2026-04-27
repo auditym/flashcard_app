@@ -84,6 +84,11 @@ This Flashcard App allows users to create, edit, delete, and study flashcards ac
 - Improved JSON data handling
 - Cleaned up file structure and organized modules
 
+### Team Evaluation 
+- Audity 10/10
+- Puspita 10/10
+- Aditi 10/10
+
 
 
 
