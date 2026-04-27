@@ -13,17 +13,17 @@ This Flashcard App allows users to create, edit, delete, and study flashcards ac
 
 ### WORK HOURS LOGS 
 
-2026-04-15 — 3 hours
+2026-04-24 — 3 hours
 - Set up initial project structure
 - Created JSON storage system
 - Implemented basic card creation and retrieval
 
-2026-04-15 — 3 hours
+2026-04-24 — 3 hours
 - Added edit and delete card functionality
 - Improved JSON data handling
 - Cleaned up file structure
 
-2026-04-15 — 3 hours
+2026-04-24 — 3 hours
 - Built GUI layout using Tkinter
 - Added navigation between screens
 - Connected GUI to card_manager functions
