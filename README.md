@@ -11,7 +11,7 @@ This Flashcard App allows users to create, edit, delete, and study flashcards ac
   - placeholder.txt
 - VERSION.txt
 
-
+### WORK HOURS LOGS 
 2026-04-20 — 7 hours
 - Added Study Mode screen
 - Updated GUI to include Study Mode button
