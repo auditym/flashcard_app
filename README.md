@@ -25,3 +25,10 @@
 - Added apply_theme() to FlashcardApp for consistent styling
 - Updated all screens to support theme switching
 - Verified deck creation, deletion, and dark mode behavior across all screens
+- 
+#### 2026-04-25 — 10
+- Added descriptive comments across multiple functions for clarity
+- Cleaned up formatting in gui.py by adding spacing for readability
+- Added .gitignore file to prevent Python cache files from being tracked
+
+
