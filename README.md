@@ -1,3 +1,6 @@
+### Project Overview
+This Flashcard App allows users to create, edit, delete, and study flashcards across multiple decks. It includes a clean GUI, dark mode, deck management, and persistent storage using JSON. The goal of the project is to provide a simple and effective study tool.
+
 2026-04-20 — 7 hours
 - Added Study Mode screen
 - Updated GUI to include Study Mode button
