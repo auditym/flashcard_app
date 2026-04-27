@@ -1,4 +1,39 @@
-2026-04-20 — 7 hours
+### Project Overview
+This Flashcard App allows users to create, edit, delete, and study flashcards across multiple decks. It includes a clean GUI, dark mode, deck management, and persistent storage using JSON. The goal of the project is to provide a simple and effective study tool.
+
+### Folder Structure
+- src/
+  - gui.py
+  - card_manager.py
+- data/
+  - cards.json
+- docs/
+  - placeholder.txt
+- VERSION.txt
+
+### WORK HOURS LOGS 
+
+2026-04-24 — 3 hours
+- Set up initial project structure
+- Created JSON storage system
+- Implemented basic card creation and retrieval
+
+2026-04-24 — 3 hours
+- Added edit and delete card functionality
+- Improved JSON data handling
+- Cleaned up file structure
+
+2026-04-24 — 3 hours
+- Built GUI layout using Tkinter
+- Added navigation between screens
+- Connected GUI to card_manager functions
+
+2026-04-24 — 3 hours
+- Implemented Study Mode (flip, next, previous, shuffle)
+- Added deck filtering to study sessions
+- Fixed UI alignment issues
+  
+2026-04-24 — 7 hours
 - Added Study Mode screen
 - Updated GUI to include Study Mode button
 - Registered StudyModeScreen in main app
@@ -17,7 +52,7 @@
 - Updated GUI navigation to include Deck Manager
 - Tested deck creation and deletion
 
-### 2026-04-24 — 4 hours
+ 2026-04-24 — 4 hours
 - Integrated Deck Manager screen (add/delete decks)
 - Added get_decks, add_deck, delete_deck functions in card_manager.py
 - Updated GUI navigation to include Deck Manager
@@ -25,3 +60,16 @@
 - Added apply_theme() to FlashcardApp for consistent styling
 - Updated all screens to support theme switching
 - Verified deck creation, deletion, and dark mode behavior across all screens
+- 
+2026-04-25 — 10
+- Added descriptive comments across multiple functions for clarity
+- Cleaned up formatting in gui.py by adding spacing for readability
+- Added .gitignore file to prevent Python cache files from being tracked
+
+2026-04-26 — 3 hours
+- Added formatting cleanup (blank line) in gui.py
+- Added Project Overview, Folder Structure, Screenshots, and Future Improvements sections to README
+
+
+
+

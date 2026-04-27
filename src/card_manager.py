@@ -3,20 +3,26 @@ import os
 
 DATA_FILE = "flashcards.json"
 
-
+# Loads flashcard data from the JSON file
 def load_data():
     if not os.path.exists(DATA_FILE):
         return {"decks": [], "cards": []}
     with open(DATA_FILE, "r") as f:
         return json.load(f)
 
-
+# Saves updated flashcard data back to the JSON file
 def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=4)
 
 
+
+#Adds a new flashcard to the system
 def add_card(front, back, deck):
+    # Prevent empty cards
+    if not front.strip() or not back.strip():
+        return False
+        
     data = load_data()
     data["cards"].append({
         "front": front,
@@ -30,6 +36,7 @@ def add_card(front, back, deck):
     save_data(data)
 
 
+# Returns all cards, or only cards from a specific deck
 def get_cards(deck=None):
     data = load_data()
     if deck:
@@ -37,6 +44,7 @@ def get_cards(deck=None):
     return data["cards"]
 
 
+# Updates an existing card by index
 def update_card(index, new_front, new_back, new_deck):
     data = load_data()
     data["cards"][index]["front"] = new_front
@@ -48,24 +56,24 @@ def update_card(index, new_front, new_back, new_deck):
 
     save_data(data)
 
-
+# Deletes a card by index
 def delete_card(index):
     data = load_data()
     data["cards"].pop(index)
     save_data(data)
-
+# Returns a list of all deck names
 def get_decks():
     data = load_data()
     return data["decks"]
 
-
+# Adds a new deck if it doesn't already exist
 def add_deck(deck_name):
     data = load_data()
     if deck_name not in data["decks"]:
         data["decks"].append(deck_name)
         save_data(data)
 
-
+# Deletes a deck and all cards inside it
 def delete_deck(deck_name):
     data = load_data()
 
