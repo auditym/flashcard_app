@@ -112,17 +112,6 @@ class CreateCardScreen(tk.Frame):
         self.front_entry = tk.Entry(self)
         self.front_entry.pack() 
 
-        # Character counter
-        self.char_count = tk.Label(self, text="0 characters")
-        self.char_count.pack()
-
-        def update_count(event):
-            text = self.front_entry.get("1.0", "end-1c")
-            self.char_count.config(text=f"{len(text)} characters")
-
-        self.front_entry.bind("<KeyRelease>", update_count)
-
-        
         tk.Label(self, text="Back:").pack()
         self.back_entry = tk.Entry(self)
         self.back_entry.pack()
