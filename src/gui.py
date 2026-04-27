@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-from src.card_manager import (
+from card_manager import (
     add_card,
     get_cards,
     update_card,
@@ -10,6 +10,7 @@ from src.card_manager import (
     add_deck,
     delete_deck,
 )
+
 from src.study_mode import StudySession
 
 
