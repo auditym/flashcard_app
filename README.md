@@ -28,12 +28,12 @@ This Flashcard App allows users to create, edit, delete, and study flashcards ac
 - Added navigation between screens
 - Connected GUI to card_manager functions
 
-2026-04-20 — 3 hours
+2026-04-24 — 3 hours
 - Implemented Study Mode (flip, next, previous, shuffle)
 - Added deck filtering to study sessions
 - Fixed UI alignment issues
   
-2026-04-20 — 7 hours
+2026-04-24 — 7 hours
 - Added Study Mode screen
 - Updated GUI to include Study Mode button
 - Registered StudyModeScreen in main app
