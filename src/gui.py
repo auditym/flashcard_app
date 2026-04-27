@@ -11,7 +11,7 @@ from card_manager import (
     delete_deck,
 )
 
-from src.study_mode import StudySession
+from study_mode import StudySession
 
 
 class FlashcardApp(tk.Tk):
@@ -65,6 +65,7 @@ class FlashcardApp(tk.Tk):
 class HomeScreen(tk.Frame):
     def __init__(self, parent, controller):
         super().__init__(parent)
+        self.controller = controller
 
         tk.Label(self, text="Flashcard Study App", font=("Arial", 22)).pack(pady=20)
 
@@ -320,3 +321,7 @@ class DeckManagerScreen(tk.Frame):
         if deck:
             delete_deck(deck)
             self.load_decks()
+
+if __name__ == "__main__":
+    app = FlashcardApp()
+    app.mainloop()

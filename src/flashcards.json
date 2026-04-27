@@ -1,0 +1,18 @@
+{
+    "decks": [
+        "Math addition",
+        "multiplication"
+    ],
+    "cards": [
+        {
+            "front": "What is 2+2",
+            "back": "4",
+            "deck": "Math addition"
+        },
+        {
+            "front": "what is 4 x 4",
+            "back": "16",
+            "deck": "multiplication"
+        }
+    ]
+}
