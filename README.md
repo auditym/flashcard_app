@@ -17,6 +17,21 @@ This Flashcard App allows users to create, edit, delete, and study flashcards ac
 - Set up initial project structure
 - Created JSON storage system
 - Implemented basic card creation and retrieval
+
+2026-04-15 — 3 hours
+- Added edit and delete card functionality
+- Improved JSON data handling
+- Cleaned up file structure
+
+2026-04-15 — 3 hours
+- Built GUI layout using Tkinter
+- Added navigation between screens
+- Connected GUI to card_manager functions
+
+2026-04-20 — 3 hours
+- Implemented Study Mode (flip, next, previous, shuffle)
+- Added deck filtering to study sessions
+- Fixed UI alignment issues
   
 2026-04-20 — 7 hours
 - Added Study Mode screen
@@ -50,5 +65,11 @@ This Flashcard App allows users to create, edit, delete, and study flashcards ac
 - Added descriptive comments across multiple functions for clarity
 - Cleaned up formatting in gui.py by adding spacing for readability
 - Added .gitignore file to prevent Python cache files from being tracked
+
+2026-04-26 — 3 hours
+- Added formatting cleanup (blank line) in gui.py
+- Added Project Overview, Folder Structure, Screenshots, and Future Improvements sections to README
+
+
 
 
