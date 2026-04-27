@@ -61,7 +61,7 @@ This Flashcard App allows users to create, edit, delete, and study flashcards ac
 - Updated all screens to support theme switching
 - Verified deck creation, deletion, and dark mode behavior across all screens
 - 
-2026-04-25 — 10
+2026-04-25 — 10 hours
 - Added descriptive comments across multiple functions for clarity
 - Cleaned up formatting in gui.py by adding spacing for readability
 - Added .gitignore file to prevent Python cache files from being tracked
@@ -69,6 +69,21 @@ This Flashcard App allows users to create, edit, delete, and study flashcards ac
 2026-04-26 — 3 hours
 - Added formatting cleanup (blank line) in gui.py
 - Added Project Overview, Folder Structure, Screenshots, and Future Improvements sections to README
+
+2026-04-25 — 10 hours
+- Added comments for clarity
+- Added .gitignore to ignore Python cache files
+- Added formatting cleanup (blank line)
+- Added input validation for empty cards
+- Added delete confirmation popup
+- Added character counter and Clear button to Create Card screen
+-  Set up initial project structure
+- Created JSON storage system for flashcards
+- Implemented basic card creation and retrieval functions
+- Added edit and delete card functionality
+- Improved JSON data handling
+- Cleaned up file structure and organized modules
+
 
 
 
