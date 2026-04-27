@@ -125,11 +125,20 @@ class CreateCardScreen(tk.Frame):
             self, text="Back", command=lambda: controller.show_frame(HomeScreen)
         ).pack()
 
+
     def save_card(self):
         add_card(self.front_entry.get(), self.back_entry.get(), self.deck_entry.get())
         self.front_entry.delete(0, tk.END)
         self.back_entry.delete(0, tk.END)
         self.deck_entry.delete(0, tk.END)
+
+    # Clear fields button
+        def clear_fields():
+            self.front_entry.delete("1.0", "end")
+            self.back_entry.delete("1.0", "end")
+
+        clear_btn = tk.Button(self, text="Clear", command=clear_fields)
+        clear_btn.pack()
 
 
 class ViewCardsScreen(tk.Frame):
